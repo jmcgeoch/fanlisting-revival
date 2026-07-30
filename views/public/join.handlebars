@@ -1,0 +1,17 @@
+<h1>Join {{listing.name}}</h1>
+
+{{#if errors.length}}
+<ul class="errors">
+  {{#each errors}}<li>{{this.msg}}</li>{{/each}}
+</ul>
+{{/if}}
+
+<form method="POST" action="/join">
+  <label>Name<br><input type="text" name="name" value="{{values.name}}" required></label><br>
+  <label>Email<br><input type="email" name="email" value="{{values.email}}" required></label><br>
+  <label>Website URL (optional)<br><input type="url" name="url" value="{{values.url}}"></label><br>
+  <label>Country<br><input type="text" name="country" value="{{values.country}}" required></label><br>
+  <button type="submit">Join</button>
+</form>
+
+<p><a href="/">Back to the member list</a></p>

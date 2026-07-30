@@ -1,0 +1,19 @@
+<h1>{{listing.name}}</h1>
+<p>{{listing.description}}</p>
+<p><a href="/join">Join this fanlisting</a></p>
+
+<h2>Members ({{members.length}})</h2>
+<ul class="member-list">
+  {{#each members}}
+  <li>
+    {{#if this.url}}
+      <a href="{{this.url}}" target="_blank" rel="noopener">{{this.name}}</a>
+    {{else}}
+      {{this.name}}
+    {{/if}}
+    <span class="country">({{this.country}})</span>
+  </li>
+  {{else}}
+  <li>No members yet — be the first to join!</li>
+  {{/each}}
+</ul>

@@ -1,0 +1,6 @@
+A new member joined {{listingName}}:
+
+Name: {{name}}
+Email: {{email}}
+
+Log in to the admin panel to review.

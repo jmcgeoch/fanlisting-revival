@@ -1,0 +1,4 @@
+Hi {{name}},
+
+Thanks for joining {{listingName}}! Your submission is pending approval.
+You'll receive another email once it's been reviewed.

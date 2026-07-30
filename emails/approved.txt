@@ -1,0 +1,3 @@
+Hi {{name}},
+
+Good news — you've been approved for {{listingName}}! Thanks for joining.

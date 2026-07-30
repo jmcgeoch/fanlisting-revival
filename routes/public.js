@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator');
 const queries = require('../lib/queries');
 const { sendTemplateEmail } = require('../lib/mailer');
 const config = require('../config');
+const countries = require('../lib/countries');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/join', (req, res) => {
   const listing = queries.getListing();
-  res.render('public/join', { listing, values: {}, errors: [] });
+  res.render('public/join', { listing, values: {}, errors: [], countries });
 });
 
 router.post(
@@ -27,7 +28,12 @@ router.post(
       .trim()
       .isURL()
       .withMessage('URL must be valid'),
-    body('country').trim().notEmpty().withMessage('Country is required'),
+    body('country')
+      .trim()
+      .notEmpty()
+      .withMessage('Country is required')
+      .isIn(countries)
+      .withMessage('Please choose a country from the list'),
   ],
   (req, res) => {
     const listing = queries.getListing();
@@ -37,6 +43,7 @@ router.post(
         listing,
         values: req.body,
         errors: errors.array(),
+        countries,
       });
     }
 

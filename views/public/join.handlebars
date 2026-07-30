@@ -10,7 +10,14 @@
   <label>Name<br><input type="text" name="name" value="{{values.name}}" required></label><br>
   <label>Email<br><input type="email" name="email" value="{{values.email}}" required></label><br>
   <label>Website URL (optional)<br><input type="url" name="url" value="{{values.url}}"></label><br>
-  <label>Country<br><input type="text" name="country" value="{{values.country}}" required></label><br>
+  <label>Country<br>
+    <select name="country" required>
+      <option value="" disabled {{#unless values.country}}selected{{/unless}}>Select a country</option>
+      {{#each countries}}
+        <option value="{{this}}" {{#if (eq this ../values.country)}}selected{{/if}}>{{this}}</option>
+      {{/each}}
+    </select>
+  </label><br>
   <button type="submit">Join</button>
 </form>
 

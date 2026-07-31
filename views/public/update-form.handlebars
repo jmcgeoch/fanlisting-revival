@@ -1,0 +1,28 @@
+{{> header}}
+
+<h2>Update your details</h2>
+
+{{#if errors.length}}
+    <ul class="errors">
+        {{#each errors}}
+            <li>{{this.msg}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
+
+<form method="POST" action="/update/{{token}}">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <label>Email<br><input type="email" value="{{values.email}}" disabled></label><br>
+    <p class="hint">Your email is locked — contact the owner if it needs changing.</p>
+    <label>Name<br><input type="text" name="name" value="{{values.name}}" required></label><br>
+    <label>Website URL (optional)<br><input type="url" name="url" value="{{values.url}}"></label><br>
+    <label>Country<br>
+        <select name="country" required>
+            <option value="" disabled {{#unless values.country}}selected{{/unless}}>Select a country</option>
+            {{#each countries}}
+                <option value="{{this}}" {{#if (eq this ../values.country)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+        </select>
+    </label><br>
+    <button type="submit">Save changes</button>
+</form>

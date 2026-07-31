@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="31" viewBox="0 0 88 31">
+  <rect width="88" height="31" fill="#2b6cb0"/>
+  <rect x="0.5" y="0.5" width="87" height="30" fill="none" stroke="#1a4971"/>
+  <text x="44" y="19" font-family="Verdana, Geneva, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">your button</text>
+</svg>

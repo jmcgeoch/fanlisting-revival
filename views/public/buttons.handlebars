@@ -1,0 +1,18 @@
+{{> header}}
+
+<h2>Buttons</h2>
+<p>Grab a button below to link back to {{listing.name}} from your own site.</p>
+
+<div class="buttons-grid">
+    <div class="button-item">
+        <img src="/button-images/default.svg" width="88" height="31" alt="{{listing.name}} button">
+        <!-- @formatter:off -->
+        <!-- Keep the textarea contents on ONE line: it's whitespace-sensitive,
+             so any reflow corrupts the copy-paste embed code. -->
+        <textarea readonly rows="3" onclick="this.select()">&lt;a href=&quot;{{siteUrl}}&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;{{siteUrl}}/button-images/default.svg&quot; width=&quot;88&quot; height=&quot;31&quot; alt=&quot;{{listing.name}}&quot;&gt;&lt;/a&gt;</textarea>
+        <!-- @formatter:on -->
+    </div>
+</div>
+
+<p class="hint">Replace <code>public/button-images/default.svg</code> with your own 88&times;31 button graphic whenever
+    you're ready — the embed code above keeps working as long as the filename stays the same.</p>

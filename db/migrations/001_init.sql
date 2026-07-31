@@ -4,7 +4,10 @@ CREATE TABLE listing (
   slug TEXT NOT NULL UNIQUE,
   description TEXT,
   theme TEXT DEFAULT 'default',
-  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  owner_name TEXT,
+  owner_email TEXT,
+  owner_url TEXT
 );
 
 CREATE TABLE member (
@@ -14,9 +17,12 @@ CREATE TABLE member (
   url TEXT,
   email TEXT NOT NULL,
   country TEXT,
-  status TEXT NOT NULL DEFAULT 'pending',
+  status TEXT NOT NULL DEFAULT 'pending', -- pending | approved | rejected
   joined_at TEXT DEFAULT CURRENT_TIMESTAMP,
-  approved_at TEXT
+  approved_at TEXT,
+  -- One-time magic-link token for member self-service updates (no password).
+  edit_token TEXT,
+  edit_token_expires TEXT
 );
 
 CREATE TABLE admin_user (

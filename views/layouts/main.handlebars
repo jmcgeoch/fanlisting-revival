@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{listing.name}}</title>
-  <link rel="stylesheet" href="/themes/default/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{listing.name}}</title>
+    <link rel="stylesheet" href="/themes/default/style.css">
 </head>
+
 <body>
-  {{#if flash}}
-    <div class="flash flash-{{flash.type}}">{{flash.message}}</div>
-  {{/if}}
-  {{{body}}}
+    {{#if flash}}
+        <div class="flash flash-{{flash.type}}">{{flash.message}}</div>
+    {{/if}}
+    <main class="page-content">
+        {{{body}}}
+    </main>
+    {{> footer}}
 </body>
+
 </html>

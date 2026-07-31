@@ -1,68 +1,260 @@
 body {
-  font-family: system-ui, sans-serif;
-  max-width: 640px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  color: #222;
-  line-height: 1.5;
+    font-family: system-ui, sans-serif;
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #222;
+    line-height: 1.5;
+    /* Sticky footer: fill the viewport (minus the 2rem top/bottom margins) and
+     stack as a column so .page-content can grow and push the footer down when
+     there's little content. */
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    flex: 1 0 auto;
 }
 
 a {
-  color: #2b6cb0;
+    color: #2b6cb0;
+}
+
+.site-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.site-header .hero {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto 0.75rem;
+}
+
+.site-header h1 {
+    margin: 0 0 0.75rem;
+    font-size: 1.6rem;
+}
+
+.tagline {
+    text-align: center;
+    color: #718096;
+    margin-top: -0.5rem;
+}
+
+.site-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+}
+
+.site-nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: #4a5568;
+}
+
+.site-nav a:hover {
+    color: #2b6cb0;
+}
+
+.site-nav a.active {
+    color: #2b6cb0;
+    font-weight: bold;
+}
+
+.buttons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.button-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.button-item img {
+    border: 1px solid #cbd5e0;
+}
+
+.button-item textarea {
+    width: 260px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 0.4rem;
+    box-sizing: border-box;
+}
+
+.hint {
+    color: #718096;
+    font-size: 0.9em;
 }
 
 .flash {
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
 }
 
 .flash-success {
-  background: #e6ffed;
-  border: 1px solid #34d399;
+    background: #e6ffed;
+    border: 1px solid #34d399;
 }
 
 .flash-info {
-  background: #ebf8ff;
-  border: 1px solid #63b3ed;
+    background: #ebf8ff;
+    border: 1px solid #63b3ed;
+}
+
+.flash-error {
+    background: #fff5f5;
+    border: 1px solid #fc8181;
 }
 
 .errors,
 .error {
-  color: #c53030;
+    color: #c53030;
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  text-align: left;
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
 }
 
 .member-list li {
-  margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .country {
-  color: #718096;
-  font-size: 0.9em;
+    color: #718096;
+    font-size: 0.9em;
 }
 
 form label {
-  display: block;
-  margin-bottom: 0.75rem;
+    display: block;
+    margin-bottom: 0.75rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="url"] {
-  width: 100%;
-  max-width: 320px;
-  padding: 0.4rem;
-  box-sizing: border-box;
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='url'] {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.4rem;
+    box-sizing: border-box;
+}
+
+input:disabled {
+    background: #f7fafc;
+    color: #718096;
+}
+
+.listing-counts {
+    text-align: center;
+    color: #4a5568;
+}
+
+.pending-count {
+    color: #b7791f;
+}
+
+/* Plain listing-facts panel */
+.listing-info {
+    float: right;
+    width: 240px;
+    max-width: 100%;
+    border: 1px solid #e2e8f0;
+    padding: 0.9rem 1.1rem;
+    margin: 0 0 1.5rem 1.5rem;
+}
+
+@media (max-width: 480px) {
+    .listing-info {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.5rem;
+    }
+}
+
+.listing-info dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1.25rem;
+}
+
+.listing-info dt {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: #718096;
+    align-self: baseline;
+    padding-top: 0.1rem;
+}
+
+.listing-info dd {
+    margin: 0;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.listing-info .pending-count {
+    font-size: 0.85em;
+}
+
+.filter-form {
+    margin-bottom: 1rem;
+}
+
+.filter-form label {
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.pagination .page-info {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.site-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+.site-footer p {
+    margin: 0.35rem 0;
+}
+
+.site-footer .footer-owner {
+    color: #4a5568;
 }

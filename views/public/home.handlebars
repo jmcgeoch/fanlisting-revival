@@ -1,19 +1,33 @@
-<h1>{{listing.name}}</h1>
-<p>{{listing.description}}</p>
-<p><a href="/join">Join this fanlisting</a></p>
+{{> header}}
 
-<h2>Members ({{members.length}})</h2>
+{{#if listing.description}}
+    <p class="tagline">{{listing.description}}</p>
+{{/if}}
+
+{{> infobox}}
+
+<p>This site is a fanlisting for --- . If you're a fan of all the things that encompass this fanlisting then
+    go to the join page and become a member! Don't forget to grab a button on the way out to showcase on your
+    personal website!</p>
+
+<h2>Recent members</h2>
 <ul class="member-list">
-  {{#each members}}
-  <li>
-    {{#if this.url}}
-      <a href="{{this.url}}" target="_blank" rel="noopener">{{this.name}}</a>
+    {{#each members}}
+        <li>
+            {{#if this.url}}
+                <a href="{{this.url}}" target="_blank" rel="noopener">{{this.name}}</a>
+            {{else}}
+                {{this.name}}
+            {{/if}}
+            <span class="country">({{this.country}})</span>
+        </li>
     {{else}}
-      {{this.name}}
-    {{/if}}
-    <span class="country">({{this.country}})</span>
-  </li>
-  {{else}}
-  <li>No members yet — be the first to join!</li>
-  {{/each}}
+        <li>No members yet — be the first to join!</li>
+    {{/each}}
 </ul>
+
+{{#if hasMore}}
+    <p><a href="/members">View all members &rarr;</a></p>
+{{else if members.length}}
+    <p><a href="/members">Browse the full member list &rarr;</a></p>
+{{/if}}

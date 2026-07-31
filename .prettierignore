@@ -1,0 +1,12 @@
+# Generated / vendored
+node_modules
+package-lock.json
+data
+
+# Not Prettier-formatted: Handlebars templates (the glimmer parser mangles
+# server-side {{{ }}} / partials), SQL migrations, plain-text email templates,
+# and SVG assets.
+*.handlebars
+*.sql
+*.svg
+emails/*.txt

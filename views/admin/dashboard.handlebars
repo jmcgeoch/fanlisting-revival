@@ -1,14 +1,16 @@
 <h1>{{listing.name}} — Admin</h1>
-<form method="POST" action="/admin/logout"><button type="submit">Log out</button></form>
+<form method="POST" action="/admin/logout"><input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <button type="submit">Log out</button>
+</form>
 
 <p>Pending: {{pendingCount}} | Approved: {{approvedCount}}</p>
-<p><a href="/admin/members">Manage members</a></p>
+<p><a href="/admin/members">Manage members</a> | <a href="/admin/settings">Settings</a></p>
 
 <h2>Recent joins</h2>
 <ul>
-  {{#each recent}}
-  <li>{{this.name}} — {{this.status}}</li>
-  {{else}}
-  <li>No members yet.</li>
-  {{/each}}
+    {{#each recent}}
+        <li>{{this.name}} — {{this.status}}</li>
+    {{else}}
+        <li>No members yet.</li>
+    {{/each}}
 </ul>

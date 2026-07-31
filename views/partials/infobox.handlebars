@@ -1,0 +1,33 @@
+{{!-- Compact listing/owner facts panel. Self-contained and modular — drop
+    {{> infobox}} into any public view that has `listing` and (optionally)
+    `stats` in scope. --}}
+<aside class="listing-info">
+    <dl>
+        {{#if listing.owner_name}}
+            <dt>Owner</dt>
+            <dd>
+                {{#if listing.owner_email}}
+                    <a href="mailto:{{listing.owner_email}}">{{listing.owner_name}}</a>
+                {{else}}
+                    {{listing.owner_name}}
+                {{/if}}
+            </dd>
+        {{/if}}
+        {{#if listing.owner_url}}
+            <dt>Website</dt>
+            <dd><a href="{{listing.owner_url}}" target="_blank" rel="noopener">{{listing.owner_url}}</a></dd>
+        {{/if}}
+        <dt>Established</dt>
+        <dd>{{formatDate listing.created_at}}</dd>
+        {{#if stats}}
+            <dt>Updated</dt>
+            <dd>{{#if stats.lastUpdated}}{{formatDate stats.lastUpdated}}{{else}}&mdash;{{/if}}</dd>
+            <dt>Members</dt>
+            <dd>
+                {{stats.approvedCount}}{{#if stats.pendingCount}}
+                    <span class="pending-count">({{stats.pendingCount}} pending)</span>
+                {{/if}}
+            </dd>
+        {{/if}}
+    </dl>
+</aside>

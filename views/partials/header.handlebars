@@ -1,0 +1,12 @@
+<header class="site-header">
+    {{#if heroImagePath}}
+        <img class="hero" src="{{heroImagePath}}" alt="{{listing.name}}">
+    {{/if}}
+    <h1>{{listing.name}}</h1>
+    <nav class="site-nav">
+        <a href="/" class="{{#if (eq active 'home')}}active{{/if}}">Home</a>
+        <a href="/members" class="{{#if (eq active 'members')}}active{{/if}}">Members</a>
+        <a href="/join" class="{{#if (eq active 'join')}}active{{/if}}">Join</a>
+        <a href="/buttons" class="{{#if (eq active 'buttons')}}active{{/if}}">Buttons</a>
+    </nav>
+</header>

@@ -1,0 +1,21 @@
+<h1>{{listing.name}} — Settings</h1>
+<p><a href="/admin">&larr; Dashboard</a></p>
+
+<p>These details appear on your public pages — the title in the header, the
+    description on the home page, and the "Run by" line in the footer, with a link to your email address
+    if provided.</p>
+
+<form method="POST" action="/admin/settings">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <label>Listing name<br>
+        <input type="text" name="name" value="{{listing.name}}" required></label>
+    <label>Description / tagline<br>
+        <input type="text" name="description" value="{{listing.description}}"></label>
+    <label>Owner name<br>
+        <input type="text" name="owner_name" value="{{listing.owner_name}}"></label>
+    <label>Owner email <span class="hint">(linked from the footer & info box)</span><br>
+        <input type="email" name="owner_email" value="{{listing.owner_email}}"></label>
+    <label>Owner URL <span class="hint">(linked from the info box)</span><br>
+        <input type="url" name="owner_url" value="{{listing.owner_url}}"></label>
+    <button type="submit">Save settings</button>
+</form>

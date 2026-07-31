@@ -1,42 +1,57 @@
 <h1>Members</h1>
 <p>
-  <a href="/admin">&larr; Dashboard</a> |
-  <a href="/admin/members?status=all">All</a> |
-  <a href="/admin/members?status=pending">Pending</a> |
-  <a href="/admin/members?status=approved">Approved</a> |
-  <a href="/admin/members?status=rejected">Rejected</a>
+    <a href="/admin">&larr; Dashboard</a> |
+    <a href="/admin/members?status=all">All</a> |
+    <a href="/admin/members?status=pending">Pending</a> |
+    <a href="/admin/members?status=approved">Approved</a> |
+    <a href="/admin/members?status=rejected">Rejected</a>
 </p>
 
 <form method="POST" action="/admin/members/bulk">
-<table>
-  <thead>
-    <tr><th></th><th>Name</th><th>Email</th><th>Country</th><th>Status</th><th>Actions</th></tr>
-  </thead>
-  <tbody>
-    {{#each members}}
-    <tr>
-      <td><input type="checkbox" name="ids" value="{{this.id}}"></td>
-      <td>{{this.name}}</td>
-      <td>{{this.email}}</td>
-      <td>{{this.country}}</td>
-      <td>{{this.status}}</td>
-      <td>
-        <button form="approve-{{this.id}}" type="submit">Approve</button>
-        <button form="reject-{{this.id}}" type="submit">Reject</button>
-      </td>
-    </tr>
-    {{else}}
-    <tr><td colspan="6">No members found.</td></tr>
-    {{/each}}
-  </tbody>
-</table>
-<p>
-  <button type="submit" name="action" value="approve">Approve selected</button>
-  <button type="submit" name="action" value="reject">Reject selected</button>
-</p>
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Country</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each members}}
+                <tr>
+                    <td><input type="checkbox" name="ids" value="{{this.id}}"></td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{#if this.url}}<a href="{{this.url}}" target="_blank" rel="noopener">{{this.url}}</a>
+                        {{else}}&mdash;{{/if}}</td>
+                    <td>{{this.country}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                        <button form="approve-{{this.id}}" type="submit">Approve</button>
+                        <button form="reject-{{this.id}}" type="submit">Reject</button>
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td colspan="7">No members found.</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <p>
+        <button type="submit" name="action" value="approve">Approve selected</button>
+        <button type="submit" name="action" value="reject">Reject selected</button>
+    </p>
 </form>
 
 {{#each members}}
-<form id="approve-{{this.id}}" method="POST" action="/admin/members/{{this.id}}/approve"></form>
-<form id="reject-{{this.id}}" method="POST" action="/admin/members/{{this.id}}/reject"></form>
+    <form id="approve-{{this.id}}" method="POST" action="/admin/members/{{this.id}}/approve"><input type="hidden" name="_csrf" value="{{../csrfToken}}">
+    </form>
+    <form id="reject-{{this.id}}" method="POST" action="/admin/members/{{this.id}}/reject"><input type="hidden" name="_csrf" value="{{../csrfToken}}">
+    </form>
 {{/each}}

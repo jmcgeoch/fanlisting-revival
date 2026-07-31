@@ -1,0 +1,18 @@
+{{#if listing}}
+    <footer class="site-footer">
+        <p class="footer-owner">
+            {{#if listing.owner_name}}
+                Run by
+                {{#if listing.owner_email}}
+                    <a href="mailto:{{listing.owner_email}}">{{listing.owner_name}}</a>
+                {{else}}
+                    {{listing.owner_name}}
+                {{/if}}
+            {{/if}}
+        </p>
+        <p class="footer-meta">
+            Powered by <a href="https://github.com/jmcgeoch/fanlisting-revival" target="_blank" rel="noopener">Fanlisting
+                Revival</a>
+        </p>
+    </footer>
+{{/if}}

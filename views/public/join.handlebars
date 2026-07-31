@@ -1,24 +1,39 @@
-<h1>Join {{listing.name}}</h1>
+{{> header}}
+
+<h2>Join</h2>
+
+<p>Please submit the following form to apply for membership to the {{ listing.name }} fanlisting.
+    After clicking "Join" your entry will be reviewed for acceptance. If you have any questions or issues, please
+    contact the webmaster{{#if listing.owner_name}}
+        {{#if listing.owner_email}}
+            <a href="mailto:{{listing.owner_email}}">{{listing.owner_name}}</a>
+        {{else}}
+            {{listing.owner_name}}
+        {{/if}}
+    {{/if}} via email.</p>
 
 {{#if errors.length}}
-<ul class="errors">
-  {{#each errors}}<li>{{this.msg}}</li>{{/each}}
-</ul>
+    <ul class="errors">
+        {{#each errors}}
+            <li>{{this.msg}}</li>
+        {{/each}}
+    </ul>
 {{/if}}
 
 <form method="POST" action="/join">
-  <label>Name<br><input type="text" name="name" value="{{values.name}}" required></label><br>
-  <label>Email<br><input type="email" name="email" value="{{values.email}}" required></label><br>
-  <label>Website URL (optional)<br><input type="url" name="url" value="{{values.url}}"></label><br>
-  <label>Country<br>
-    <select name="country" required>
-      <option value="" disabled {{#unless values.country}}selected{{/unless}}>Select a country</option>
-      {{#each countries}}
-        <option value="{{this}}" {{#if (eq this ../values.country)}}selected{{/if}}>{{this}}</option>
-      {{/each}}
-    </select>
-  </label><br>
-  <button type="submit">Join</button>
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <label>Name<br><input type="text" name="name" value="{{values.name}}" required></label>
+    <label>Email<br><input type="email" name="email" value="{{values.email}}" required></label>
+    <label>Website URL (optional)<br><input type="url" name="url" value="{{values.url}}"></label>
+    <label>Country<br>
+        <select name="country" required>
+            <option value="" disabled {{#unless values.country}}selected{{/unless}}>Select a country</option>
+            {{#each countries}}
+                <option value="{{this}}" {{#if (eq this ../values.country)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+        </select>
+    </label>
+    <button type="submit">Join</button>
 </form>
-
-<p><a href="/">Back to the member list</a></p>
+<br>
+<p class="hint">Part of {{ listing.name }}? &middot; <a href="/update">Update your details</a></p>

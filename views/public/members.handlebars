@@ -1,0 +1,40 @@
+{{> header}}
+
+<h2>Members ({{total}})</h2>
+
+<form method="GET" action="/members" class="filter-form">
+    <label>Filter by country
+        <select name="country" onchange="this.form.submit()">
+            <option value="">All countries</option>
+            {{#each availableCountries}}
+                <option value="{{this}}" {{#if (eq this ../selectedCountry)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+        </select>
+    </label>
+    <noscript>
+        <button type="submit">Filter</button>
+    </noscript>
+</form>
+
+<ul class="member-list">
+    {{#each members}}
+        <li>
+            {{#if this.url}}
+                <a href="{{this.url}}" target="_blank" rel="noopener">{{this.name}}</a>
+            {{else}}
+                {{this.name}}
+            {{/if}}
+            <span class="country">({{this.country}})</span>
+        </li>
+    {{else}}
+        <li>No members{{#if selectedCountry}} from {{selectedCountry}}{{/if}} yet.</li>
+    {{/each}}
+</ul>
+
+{{#if (eq totalPages 1)}}{{else}}
+    <nav class="pagination">
+        {{#if hasPrev}}<a href="/members?page={{prevPage}}{{countryQuery}}">&larr; Prev</a>{{/if}}
+        <span class="page-info">Page {{page}} of {{totalPages}}</span>
+        {{#if hasNext}}<a href="/members?page={{nextPage}}{{countryQuery}}">Next &rarr;</a>{{/if}}
+    </nav>
+{{/if}}

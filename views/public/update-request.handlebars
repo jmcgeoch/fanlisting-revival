@@ -1,0 +1,18 @@
+{{> header}}
+
+<h2>Update your details</h2>
+
+{{#if sent}}
+    <p>If that email address belongs to an approved member, we've sent a link you
+        can use to update your details. It expires in 24 hours — check your inbox.</p>
+{{else}}
+    <p>Already a member? Enter the email you joined with and we'll send you a link
+        to edit your name, website, and country. (Your email address itself can't be
+        changed here.)</p>
+
+    <form method="POST" action="/update">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <label>Email<br><input type="email" name="email" required></label><br>
+        <button type="submit">Email me an update link</button>
+    </form>
+{{/if}}
